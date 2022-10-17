@@ -1,4 +1,5 @@
 import { FilterTitle, FilterInput } from './Filter.styled';
+import PropTypes from 'prop-types';
 
 export default function Filter({ handleFilter }) {
   return (
@@ -7,4 +8,8 @@ export default function Filter({ handleFilter }) {
       <FilterInput type="search" name="filter" onChange={handleFilter} />
     </>
   );
+}
+
+Filter.propTypes = {
+  handleFilter: PropTypes.func.isRequired,
 }
