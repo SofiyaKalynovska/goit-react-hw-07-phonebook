@@ -55,9 +55,5 @@ export default class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  addedContact: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
-  }),
+  onSubmit: PropTypes.func.isRequired
 };
