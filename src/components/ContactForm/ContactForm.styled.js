@@ -13,7 +13,7 @@ font-size: 24px;
 font-weight: 500;
 `
 export const Input = styled.input`
-width: 70%;
+max-width: 360px;
 
 `
 export const AddContact = styled.button`
