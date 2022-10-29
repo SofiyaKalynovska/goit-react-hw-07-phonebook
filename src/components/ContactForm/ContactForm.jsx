@@ -10,10 +10,9 @@ export default function ContactForm({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    
-    
+
     onSubmit({ id, name, number });
-    
+
     setId('');
     setName('');
     setNumber('');
