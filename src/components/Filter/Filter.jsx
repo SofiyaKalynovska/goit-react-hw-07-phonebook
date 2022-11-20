@@ -8,15 +8,19 @@ const Filter = () => {
   const dispatch = useDispatch();
   const handleFilter = e => {
     e.preventDefault();
-    dispatch(changeFilter(e.currentTarget.value))
-  }
+    dispatch(changeFilter(e.currentTarget.value));
+  };
   return (
     <>
       <FilterTitle>Find contacts by name</FilterTitle>
-      <FilterInput type="search" name="filter" value={filter} onChange={handleFilter} />
+      <FilterInput
+        type="search"
+        name="filter"
+        value={filter}
+        onChange={handleFilter}
+      />
     </>
   );
-}
-
+};
 
 export default Filter;

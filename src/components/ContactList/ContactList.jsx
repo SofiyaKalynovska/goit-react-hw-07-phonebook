@@ -10,27 +10,22 @@ const ContactList = () => {
   const visibleContacts = contacts.filter(
     contact => contact.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1
   );
-  // const visibleContacts = contacts.filter(contact =>
-  //   contact.name.toLowerCase().includes(filter.toLowerCase())
-  // );
-
-
-  
 
   return (
-      <ContactsList>
-        {visibleContacts.map(contact => (
-          <ListItem key={contact.id}>
-            {contact.name}: {contact.number}
-            <DeleteBtn type="button" onClick={() => dispatch(deleteContact(contact.id))}>
-              Delete
-            </DeleteBtn>
-          </ListItem>
-        ))}
-      </ContactsList>
-
+    <ContactsList>
+      {visibleContacts.map(contact => (
+        <ListItem key={contact.id}>
+          {contact.name}: {contact.number}
+          <DeleteBtn
+            type="button"
+            onClick={() => dispatch(deleteContact(contact.id))}
+          >
+            Delete
+          </DeleteBtn>
+        </ListItem>
+      ))}
+    </ContactsList>
   );
 };
-
 
 export default ContactList;

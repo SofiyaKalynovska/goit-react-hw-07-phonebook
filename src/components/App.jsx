@@ -3,7 +3,6 @@ import ContactList from './ContactList/ContactList';
 import Section from '../components/Section/Section';
 import Filter from './Filter/Filter';
 
-
 export const App = () => {
   return (
     <>
@@ -16,4 +15,4 @@ export const App = () => {
       </Section>
     </>
   );
-}
+};
