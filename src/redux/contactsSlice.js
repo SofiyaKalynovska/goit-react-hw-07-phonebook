@@ -2,6 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
 const extraActions = [fetchContacts, addContact, deleteContact];
+const getAction = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -20,12 +21,12 @@ const contactsSlice = createSlice({
         task => task.id === action.payload.id
       );
       state.contacts.splice(index, 1);
-    }).addMatcher(isAnyOf(...extraActions.map(action => action.pending)), state => {
+    }).addMatcher(isAnyOf(...getAction("pending")), state => {
       state.isLoading = true;
-    }).addMatcher(isAnyOf(...extraActions.map(action => action.rejected)), (state, action) => {
+    }).addMatcher(isAnyOf(...getAction("rejected")), (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    }).addMatcher(isAnyOf(...extraActions.map(action => action.fulfilled)), state => {
+    }).addMatcher(isAnyOf(...getAction("fulfilled")), state => {
       state.isLoading = false;
       state.error = null;
     })
