@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
+const extraActions = [fetchContacts, addContact, deleteContact];
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -10,36 +11,23 @@ const contactsSlice = createSlice({
     error: null,
   },
   extraReducers: builder => {
-    builder.addCase(fetchContacts.pending, state => {
-      state.isLoading = true;
-    }).addCase(fetchContacts.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = null;
+    builder.addCase(fetchContacts.fulfilled, (state, action) => {
       state.contacts = action.payload;
-    }).addCase(fetchContacts.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    }).addCase(addContact.pending, state => {
-      state.isLoading = true;
     }).addCase(addContact.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = null;
       state.contacts.push(action.payload);
-    }).addCase(addContact.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    }).addCase(deleteContact.pending, state => {
-      state.isLoading = true;
     }).addCase(deleteContact.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = null;
       const index = state.contacts.findIndex(
         task => task.id === action.payload.id
       );
       state.contacts.splice(index, 1);
-    }).addCase(deleteContact.rejected, (state, action) => {
+    }).addMatcher(isAnyOf(...extraActions.map(action => action.pending)), state => {
+      state.isLoading = true;
+    }).addMatcher(isAnyOf(...extraActions.map(action => action.rejected)), (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    }).addMatcher(isAnyOf(...extraActions.map(action => action.fulfilled)), state => {
+      state.isLoading = false;
+      state.error = null;
     })
   },
 });
