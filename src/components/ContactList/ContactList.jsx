@@ -1,11 +1,11 @@
 import { ContactsList, ListItem, DeleteBtn } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/contactsSlice';
 
 const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
   const visibleContacts = contacts.filter(
     contact => contact.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1
