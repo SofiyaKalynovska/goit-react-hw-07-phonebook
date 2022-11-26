@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
 import { selectIsLoading, selectError } from 'redux/selectors';
+import { MutatingDots } from 'react-loader-spinner';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,20 @@ useEffect(() => {
       </Section>
       <Section title="Contacts">
         <Filter />
-        {isLoading && !error && <b>Request in progress...</b>}
+        {isLoading && !error && (
+          <MutatingDots
+            height="100"
+            width="100"
+            color="#5576a7"
+            secondaryColor="#434687"
+            radius="12.5"
+            ariaLabel="mutating-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            margin="auto"
+            visible={isLoading}
+          />
+        )}
         <ContactList />
       </Section>
     </>
