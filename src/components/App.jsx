@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
 import { selectIsLoading, selectError } from 'redux/selectors';
 import { MutatingDots } from 'react-loader-spinner';
+import { Container } from './App.styled';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ useEffect(() => {
 }, [dispatch]);
 
   return (
-    <>
+    <Container>
       <Section title="Phonebook">
         <ContactForm />
       </Section>
@@ -40,6 +41,6 @@ useEffect(() => {
         )}
         <ContactList />
       </Section>
-    </>
+    </Container>
   );
 };
