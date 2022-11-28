@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
 import { selectIsLoading, selectError } from 'redux/selectors';
-import { MutatingDots } from 'react-loader-spinner';
+import { ThreeDots } from 'react-loader-spinner';
 import { Container } from './App.styled';
 
 export const App = () => {
@@ -14,9 +14,9 @@ export const App = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-useEffect(() => {
-  dispatch(fetchContacts());
-}, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Container>
@@ -26,16 +26,14 @@ useEffect(() => {
       <Section title="Contacts">
         <Filter />
         {isLoading && !error && (
-          <MutatingDots
-            height="100"
-            width="100"
-            color="#5576a7"
-            secondaryColor="#434687"
-            radius="12.5"
-            ariaLabel="mutating-dots-loading"
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="#33415c"
+            ariaLabel="three-dots-loading"
             wrapperStyle={{}}
-            wrapperClass=""
-            margin="auto"
+            wrapperClassName=""
             visible={isLoading}
           />
         )}

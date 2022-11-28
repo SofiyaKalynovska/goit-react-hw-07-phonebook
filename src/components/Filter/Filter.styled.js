@@ -6,6 +6,6 @@ font-weight: 500;
 margin-bottom: 10px;
 `
 export const FilterInput = styled.input`
-width: 360px;
+width: 260px;
 margin: auto;
 `
